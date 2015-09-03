@@ -14,7 +14,21 @@ var AppModel = Backbone.Model.extend({
 
 
     params.library.on('play', function(song) {
+      // the only thing that this listener
+      // function does is to reset the
+      // value of the current song.
+      // The current song is the model
+      // of the playerView at any given moment.
+      // The player view is listening to
+      // any change in the appModel's
+      // current song in order to update
+      // it's model along with the 
+      // change in the current song.
       this.set('currentSong', song);
+    }, this);
+
+    params.library.on('enqueue', function(song) {
+      this.get('songQueue').enqueue(song);
     }, this);
   }
 
