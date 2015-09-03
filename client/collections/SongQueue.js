@@ -7,7 +7,14 @@ var SongQueue = Songs.extend({
         this.playFirst();
       }
     }, this);
-    //this.on('ended', function() )
+    this.on('remove', function() {
+      if(this.length > 0) {
+        this.playFirst();
+      }
+    }, this);
+    this.on('removeFromQueue', function(song) {
+      this.remove(song);
+    }, this);
   },
 
   playFirst: function() {
@@ -19,7 +26,6 @@ var SongQueue = Songs.extend({
   },
 
   dequeue: function() {
-    console.log( 'I was called' );
     this.shift();
   }
 });
