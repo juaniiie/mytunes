@@ -8,6 +8,21 @@ var PlayerView = Backbone.View.extend({
   initialize: function() {
   },
 
+  events: {
+    'ended': function() {
+      // this will call
+      // the ended function
+      // of the current song.
+      // Said function will
+      // trigger the 'ended'
+      // backbone event.
+      // Song Queue will listen
+      // to the 'ended' backbone
+      // event.
+      this.model.ended();
+    }
+  },
+
   setSong: function(song) {
     this.model = song;
     this.render();

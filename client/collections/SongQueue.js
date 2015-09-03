@@ -2,13 +2,24 @@
 var SongQueue = Songs.extend({
 
   initialize: function() {
+    this.on('add', function() {
+      if(this.length === 1) {
+        this.playFirst();
+      }
+    }, this);
+    //this.on('ended', function() )
+  },
+
+  playFirst: function() {
+    this.at(0).play();
   },
 
   enqueue: function(song) {
-    this.unshift(song);
+    this.push(song);
   },
 
   dequeue: function() {
-    this.pop();
+    console.log( 'I was called' );
+    this.shift();
   }
 });
